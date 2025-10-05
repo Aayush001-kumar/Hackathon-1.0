@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GovVault (Secure)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>GovVault - Secure Demo</h1>
+
+  <form id="secureForm">
+    <label>Aadhaar Number:</label>
+    <input type="text" name="aadhaar" placeholder="Enter Aadhaar" required><br>
+
+    <label>PAN Number:</label>
+    <input type="text" name="pan" placeholder="Enter PAN" required><br>
+
+    <label>Login:</label>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login Securely</button>
+  </form>
+
+  <button onclick="requestLocation()">Request Location</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
