@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "govtvault-secure",
   "version": "1.0.0",
   "description": "",
@@ -14,5 +15,11 @@
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0"
+=======
+  "dependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "^5.9.3"
+>>>>>>> 8ec10be7dd91cf48c5a552612d8ad025c1cef926
   }
 }

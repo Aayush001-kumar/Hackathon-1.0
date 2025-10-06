@@ -94,6 +94,7 @@ DigiSuraksha demonstrates how even Google-approved or government-style apps can 
 ---
 
 ## Appendix
+<<<<<<< HEAD
 - **Figure 1:** Insecure vs Secure Network Capture.  
 - **Figure 2:** Evidence – Hardcoded Key in Frontend.  
 - **Figure 3:** JWT Exposure in LocalStorage.  
@@ -104,3 +105,6 @@ DigiSuraksha demonstrates how even Google-approved or government-style apps can 
   - Google Play Protect Transparency Report (2023)  
 
 ---
+=======
+- Screenshot placeholders and additional notes.
+>>>>>>> 8ec10be7dd91cf48c5a552612d8ad025c1cef926

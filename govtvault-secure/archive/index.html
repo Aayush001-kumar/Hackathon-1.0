@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovVault - Secure Citizen Portal</title>
+    <!-- Tailwind CSS for modern, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Using Inter font as the base for a clean, modern look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        /* Custom styles for a smoother transition */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-6xl mx-auto p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">GovVault</h1>
+            <p class="text-gray-600 mt-2">A Secure-First Framework for Citizen Services</p>
+        </header>
+
+        <!-- Login Section -->
+        <section id="login-section" class="w-full max-w-lg mx-auto bg-white p-8 rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">Secure Login</h2>
+            <form id="secureForm">
+                <div class="space-y-4">
+                    <input type="text" name="username" placeholder="Username" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="password" name="password" placeholder="Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" name="aadhaar" placeholder="Aadhaar Number (12 digits)" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" name="pan" placeholder="PAN (e.g., ABCDE1234F)" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit" class="w-full mt-6 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300">
+                    Login Securely
+                </button>
+            </form>
+        </section>
+
+        <!-- Dashboard Section (Initially Hidden) -->
+        <section id="dashboard" class="hidden fade-in">
+            <div class="text-center mb-8">
+                 <h2 class="text-3xl font-bold text-gray-800">Welcome, <span id="userDisplay" class="text-blue-600"></span></h2>
+                 <p class="text-gray-500 mt-1">Your secure citizen dashboard.</p>
+            </div>
+           
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                <!-- ID Verification Card -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 flex items-center mb-4">
+                        <svg class="w-6 h-6 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h4a2 2 0 012 2v1m-4 0h4m-2 11V9m0 0L9 12m2-3l2 3"></path></svg>
+                        ID Verification
+                    </h3>
+                    <p class="text-gray-600"><strong>Aadhaar:</strong> <span id="aadhaarDisplay" class="font-mono"></span></p>
+                    <p class="text-gray-600 mt-2"><strong>PAN:</strong> <span id="panDisplay" class="font-mono"></span></p>
+                </div>
+                <!-- Health Records Card -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 flex items-center mb-4">
+                         <svg class="w-6 h-6 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m-15.357-2a8.001 8.001 0 0115.357-2m0 0H15"></path></svg>
+                        Health Records
+                    </h3>
+                    <p class="text-gray-600"><strong>Known Conditions:</strong> Hypertension, Asthma</p>
+                    <p class="text-gray-600 mt-2"><strong>Last Checkup:</strong> 12 Aug 2025</p>
+                </div>
+                <!-- Financial Info Card -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 flex items-center mb-4">
+                        <svg class="w-6 h-6 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        Financial Info
+                    </h3>
+                    <p class="text-gray-600"><strong>Bank Linked:</strong> Yes (XXXX-1234)</p>
+                    <p class="text-gray-600 mt-2"><strong>Last Transaction:</strong> ₹2,450.00 (Sep 2025)</p>
+                </div>
+                <!-- Citizen Services Card -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 flex items-center mb-4">
+                        <svg class="w-6 h-6 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m12 0a2 2 0 100-4m0 4a2 2 0 110-4M6 12a2 2 0 100-4m0 4a2 2 0 110-4m12 0a2 2 0 100-4m0 4a2 2 0 110-4M6 12a2 2 0 100-4m0 4a2 2 0 110-4m12 0a2 2 0 100-4m0 4a2 2 0 110-4"></path></svg>
+                        Citizen Services
+                    </h3>
+                    <p class="text-gray-600"><strong>Driving License:</strong> Valid till 2028</p>
+                    <p class="text-gray-600 mt-2"><strong>eShram Registered:</strong> Yes</p>
+                    <button id="locationBtn" class="mt-4 text-sm text-blue-600 hover:underline">Check Services Nearby</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="notification-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+        <div class="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <div id="modal-icon-container" class="mx-auto flex items-center justify-center h-12 w-12 rounded-full">
+                    <!-- Icon will be inserted here by JS -->
+                </div>
+                <h3 id="modal-title" class="text-lg leading-6 font-medium text-gray-900 mt-2"></h3>
+                <div class="mt-2 px-7 py-3">
+                    <p id="modal-message" class="text-sm text-gray-500"></p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="modal-close-btn" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Location Permission Modal -->
+    <div id="location-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+        <div class="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+             <div class="mt-3 text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">Location Access</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500">To find citizen services near you, GovVault needs temporary access to your location. This data is not stored.</p>
+                </div>
+                <div class="flex items-center justify-center px-4 py-3 space-x-4">
+                    <button id="location-deny-btn" class="px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-300 focus:outline-none">Deny</button>
+                    <button id="location-allow-btn" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none">Allow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const secureForm = document.getElementById('secureForm');
+            const loginSection = document.getElementById('login-section');
+            const dashboard = document.getElementById('dashboard');
+
+            // --- Modal Elements ---
+            const notificationModal = document.getElementById('notification-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+            const modalIconContainer = document.getElementById('modal-icon-container');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+
+            const locationModal = document.getElementById('location-modal');
+            const locationBtn = document.getElementById('locationBtn');
+            const locationAllowBtn = document.getElementById('location-allow-btn');
+            const locationDenyBtn = document.getElementById('location-deny-btn');
+
+            // --- Helper Functions ---
+
+            // Function to show notifications instead of alerts
+            function showNotification(type, title, message) {
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+
+                modalIconContainer.innerHTML = ''; // Clear previous icon
+                if (type === 'success') {
+                    modalIconContainer.className = 'mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100';
+                    modalIconContainer.innerHTML = `<svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+                } else if (type === 'error') {
+                    modalIconContainer.className = 'mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100';
+                    modalIconContainer.innerHTML = `<svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+                }
+                notificationModal.classList.remove('hidden');
+            }
+            
+            modalCloseBtn.addEventListener('click', () => {
+                notificationModal.classList.add('hidden');
+            });
+
+            // Client-side validation functions
+            function isValidAadhaar(aadhaar) {
+                return /^\d{12}$/.test(aadhaar);
+            }
+
+            function isValidPAN(pan) {
+                return /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan.toUpperCase());
+            }
+
+            // --- Event Listeners ---
+
+            // Handle form submission
+            secureForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                // Get form data
+                const formData = new FormData(secureForm);
+                const aadhaar = formData.get('aadhaar').trim();
+                const pan = formData.get('pan').trim();
+                const username = formData.get('username').trim();
+                const password = formData.get('password').trim();
+
+                // 1. Client-side validation
+                if (!isValidAadhaar(aadhaar)) {
+                    showNotification('error', 'Validation Error', 'Aadhaar number must be exactly 12 digits.');
+                    return;
+                }
+                if (!isValidPAN(pan)) {
+                    showNotification('error', 'Validation Error', 'Please enter a valid PAN format (e.g., ABCDE1234F).');
+                    return;
+                }
+
+                // 2. Send data to the secure backend
+                try {
+                    // IMPORTANT: Replace with your actual server URL in a real deployment
+                    const response = await fetch("http://localhost:3000/submit", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ aadhaar, pan, username, password }),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        // 3. On successful login, show the dashboard
+                        loginSection.classList.add('hidden');
+                        dashboard.classList.remove('hidden');
+                        
+                        // Populate dashboard with sanitized data
+                        document.getElementById("userDisplay").textContent = username;
+                        document.getElementById("aadhaarDisplay").textContent = `XXXX-XXXX-${aadhaar.slice(-4)}`;
+                        document.getElementById("panDisplay").textContent = `${pan.slice(0, 5)}...${pan.slice(-1)}`;
+
+                        showNotification('success', 'Login Successful', result.message);
+                    } else {
+                        // Show error from server
+                        showNotification('error', 'Login Failed', result.error);
+                    }
+                } catch (err) {
+                    showNotification('error', 'Connection Error', 'Could not connect to the server. Please ensure the backend is running and try again.');
+                }
+            });
+
+            // Handle location permission flow
+            locationBtn.addEventListener('click', () => {
+                locationModal.classList.remove('hidden');
+            });
+
+            locationDenyBtn.addEventListener('click', () => {
+                locationModal.classList.add('hidden');
+                showNotification('error', 'Permission Denied', 'Location access was denied. Cannot find nearby services.');
+            });
+
+            locationAllowBtn.addEventListener('click', () => {
+                locationModal.classList.add('hidden');
+                
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        console.log("User location:", position.coords.latitude, position.coords.longitude);
+                        showNotification('success', 'Location Accessed', `Successfully found services near your location.`);
+                    },
+                    (error) => {
+                         showNotification('error', 'Location Error', 'Could not get your location. Please check your browser settings.');
+                    }
+                );
+            });
+        });
+    </script>
+</body>
+</html>
+
