@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GovVault (Unsecure)</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Vulnerable third-party script -->
+  <script src="http://malicious-sdk.com/fake.js"></script>
+</head>
+<body>
+  <h1>GovVault - Unsecure Demo</h1>
+
+  <form action="http://example.com/leak" method="GET">
+    <label>Aadhaar Number:</label>
+    <input type="text" name="aadhaar" placeholder="Enter Aadhaar"><br>
+
+    <label>PAN Number:</label>
+    <input type="text" name="pan" placeholder="Enter PAN"><br>
+
+    <label>Location Access:</label>
+    <button onclick="getLocation()">Enable</button><br>
+
+    <label>Login:</label>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
