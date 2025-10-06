@@ -43,30 +43,4 @@ document
       alert("Server error. Please try again.");
     }
   });
-document
-  .getElementById("secureForm")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
 
-    const aadhaar = e.target.aadhaar.value.trim();
-    const pan = e.target.pan.value.trim();
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    const response = await fetch("http://localhost:3000/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ aadhaar, pan, username, password }),
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      document.getElementById("secureForm").classList.add("hidden");
-      document.getElementById("dashboard").classList.remove("hidden");
-      document.getElementById("userDisplay").textContent = username;
-      document.getElementById("aadhaarDisplay").textContent = aadhaar;
-      document.getElementById("panDisplay").textContent = pan;
-    } else {
-      alert(result.error);
-    }
-  });
